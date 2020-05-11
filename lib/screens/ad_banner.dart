@@ -16,9 +16,9 @@ class AdBanner extends StatelessWidget {
 
 String getBannerAdUnitId() {
   if (Platform.isIOS) {
-    return 'ca-app-pub-9749360190619139/3631778586';
+    return 'ca-app-pub-3940256099942544/2934735716';
   } else if (Platform.isAndroid) {
-    return 'ca-app-pub-9749360190619139/8308984642';
+    return 'ca-app-pub-3940256099942544/6300978111';
   }
   return null;
 }

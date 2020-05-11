@@ -4,8 +4,22 @@ import 'package:checkklok/logic/check_provider.dart';
 import 'package:checkklok/screens/ad_banner.dart';
 import 'constants.dart';
 import 'package:provider/provider.dart';
+import 'package:admob_flutter/admob_flutter.dart';
 
-void main() => runApp(CheckKlok());
+void main() {
+  String getBannerAdUnitId() {
+    if (Platform.isIOS) {
+      return 'ca-app-pub-3940256099942544/2934735716';
+    } else if (Platform.isAndroid) {
+      return 'ca-app-pub-3940256099942544/6300978111';
+    }
+    return null;
+  }
+
+  Admob.initialize(getBannerAdUnitId());
+
+  runApp(CheckKlok());
+}
 
 class CheckKlok extends StatelessWidget {
   // This widget is the root of your application.
@@ -37,9 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    setState(() {});
   }
 
   @override
@@ -66,7 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 Card(
                   child: Column(
                     children: <Widget>[
-                      Image.asset('images/IMG_8294.jpeg'),
+                      Image.asset(
+                        'images/IMG_8294.jpeg',
+                        width: 120.0,
+                      ),
                       ButtonBar(
                         children: <Widget>[
                           FlatButton(
@@ -85,7 +100,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 Card(
                   child: Column(
                     children: <Widget>[
-                      Image.asset('images/IMG_8295.jpeg'),
+                      Image.asset(
+                        'images/IMG_8295.jpeg',
+                        width: 120.0,
+                      ),
                       ButtonBar(
                         children: <Widget>[
                           FlatButton(
@@ -104,18 +122,45 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             FlatButton(
-              child: Text('Accuracy'),
+              child: Text('Check your clock'),
               onPressed: () {},
             ),
-            Text(
-              'This watch is 20 seconds off',
-              style: Theme.of(context).textTheme.subtitle1,
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.all(12.0),
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(Icons.watch_later),
+                    title: Text('Per minute'),
+                    subtitle: Text('This watch is 1 second off'),
+                    trailing: Icon(Icons.arrow_downward),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.watch_later),
+                    title: Text('Per day'),
+                    subtitle: Text('This watch is 1440 seconds off'),
+                    trailing: Icon(Icons.arrow_downward),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.watch_later),
+                    title: Text('Per 7 days'),
+                    subtitle: Text('This watch is 10.080 seconds off'),
+                    trailing: Icon(Icons.arrow_downward),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.watch_later),
+                    title: Text('Per 30 days'),
+                    subtitle: Text('This watch is 302.400 seconds off'),
+                    trailing: Icon(Icons.arrow_downward),
+                  )
+                ],
+              ),
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {},
         tooltip: 'Reset',
         child: Icon(Icons.replay),
       ), // This trailing comma makes auto-formatting nicer for build methods.
