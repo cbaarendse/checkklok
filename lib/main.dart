@@ -1,6 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:checkklok/logic/check_provider.dart';
 import 'package:checkklok/screens/ad_banner.dart';
+import 'constants.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(CheckKlok());
 
@@ -8,12 +11,15 @@ class CheckKlok extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CheckKlok',
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+    return ChangeNotifierProvider(
+      create: (_) => CheckProvider(),
+      child: MaterialApp(
+        title: 'CheckKlok',
+        theme: ThemeData(
+          primarySwatch: Colors.deepPurple,
+        ),
+        home: MyHomePage(title: 'CheckKlok'),
       ),
-      home: MyHomePage(title: 'CheckKlok'),
     );
   }
 }
@@ -55,11 +61,51 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             //AdBanner(),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Card(),
-                SizedBox(),
-                Card(),
+                Card(
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset('images/IMG_8294.jpeg'),
+                      ButtonBar(
+                        children: <Widget>[
+                          FlatButton(
+                            child: Text('Capture'),
+                            onPressed: () {},
+                          ),
+                          FlatButton(
+                            child: Text('Select'),
+                            onPressed: () {},
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Card(
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset('images/IMG_8295.jpeg'),
+                      ButtonBar(
+                        children: <Widget>[
+                          FlatButton(
+                            child: Text('Capture'),
+                            onPressed: () {},
+                          ),
+                          FlatButton(
+                            child: Text('Select'),
+                            onPressed: () {},
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ],
+            ),
+            FlatButton(
+              child: Text('Accuracy'),
+              onPressed: () {},
             ),
             Text(
               'This watch is 20 seconds off',
@@ -70,8 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.watch),
+        tooltip: 'Reset',
+        child: Icon(Icons.replay),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

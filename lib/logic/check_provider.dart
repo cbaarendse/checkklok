@@ -1,15 +1,20 @@
 import "dart:collection";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import 'package:checkklok/constants.dart';
 
 class CheckProvider with ChangeNotifier {
-  // private properties
+  //Private properties
   static Duration _testMinute = Duration(
       hours: 0, minutes: 1, seconds: 2, milliseconds: 250, microseconds: 0);
   static var _startTime = DateTime.now();
   var _stopTime = _startTime.add(_testMinute);
 
   Map<String, int> _variations;
+
+//Public properties
+  List<Map<String, DateTime>> startCaptures;
+  List<Map<String, DateTime>> stopCaptures;
 
   //Private methods
   void _calculateVariation() {
