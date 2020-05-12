@@ -45,5 +45,9 @@
     <string>ca-app-pub-3940256099942544~1458002511</string>
     <key>io.flutter.embedded_views_preview</key>
     <true/>
+    <key>NSCameraUsageDescription</key>
+    <string>The camera is necessary for the main functionality of CheckKlok.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Save an outcome of your CheckKlok operation to the PhotoLibrary.</string>
 </dict>
 </plist>
